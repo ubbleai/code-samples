@@ -1,2 +1,2 @@
-# signature-validation
-This repository provides examples on how to verify signatures created by Ubble
+Repository containing code samples to assist integration
+

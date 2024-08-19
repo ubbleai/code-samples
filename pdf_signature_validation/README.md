@@ -1,0 +1,1 @@
+Sample codes on how to validate the PDF report signature
