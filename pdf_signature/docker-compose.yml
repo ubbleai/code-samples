@@ -1,0 +1,9 @@
+version: '3'
+services:
+  python:
+    build:
+      context: ./python
+    volumes:
+      - ./python:/app
+      - ./data:/data
+    command: ["sh", "-c", "tail -f /dev/null"]
