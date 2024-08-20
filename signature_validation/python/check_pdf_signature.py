@@ -4,23 +4,20 @@ from pyhanko.pdf_utils.reader import PdfFileReader
 from pyhanko.sign.validation import validate_pdf_signature
 from pyhanko.sign.validation.settings import KeyUsageConstraints
 from pyhanko.sign.validation import (
-       validate_pdf_ltv_signature, RevocationInfoValidationType
-   )
+    validate_pdf_ltv_signature, RevocationInfoValidationType
+)
 
 # load public certificate
-cert_file_name = "public_cert.crt" # available in documentation 
+cert_file_name = "data/pdf_signature/cko_idv_api_signature_public_certificate.crt"
 root_cert = load_cert_from_pemder(cert_file_name)
 
 # initialize validator
 vc = ValidationContext(trust_roots=[root_cert])
 ku = KeyUsageConstraints(key_usage={'digital_signature'})
 
-with open('signed_pdf.pdf', 'rb') as doc:
-  r = PdfFileReader(doc)
-  # fetch embedded signature
-  sig = r.embedded_signatures[0]
-  # validate signature
-  status = validate_pdf_ltv_signature(
-  sig, RevocationInfoValidationType.ADOBE_STYLE,validation_context_kwargs={'trust_roots': [root_cert]})
-  
-  print(status.pretty_print_details())
+with open('data/pdf_signature/signed_report.pdf', 'rb') as doc:
+    r = PdfFileReader(doc)
+    sig = r.embedded_signatures[0]
+    # validate signature
+    status = validate_pdf_signature(sig, vc, key_usage_settings=ku)
+    print(status.pretty_print_details())
