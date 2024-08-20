@@ -8,14 +8,14 @@ from pyhanko.sign.validation import (
 )
 
 # load public certificate
-cert_file_name = "data/pdf_signature/cko_idv_api_signature_public_certificate.crt"
+cert_file_name = "data/cko_idv_api_signature_public_certificate.crt"
 root_cert = load_cert_from_pemder(cert_file_name)
 
 # initialize validator
 vc = ValidationContext(trust_roots=[root_cert])
 ku = KeyUsageConstraints(key_usage={'digital_signature'})
 
-with open('data/pdf_signature/signed_report.pdf', 'rb') as doc:
+with open('data/signed_report.pdf', 'rb') as doc:
     r = PdfFileReader(doc)
     sig = r.embedded_signatures[0]
     # validate signature
