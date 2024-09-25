@@ -14,3 +14,11 @@ services:
       - ./python:/app
       - ./data:/data
     command: ["sh", "-c", "tail -f /dev/null"]
+
+  php:
+    image: php:8.1-apache
+    working_dir: /app
+    volumes:
+      - ./php:/app
+      - ./data:/data
+    command: ["sh", "-c", "tail -f /dev/null"]

@@ -23,3 +23,7 @@ This project includes
 - start the container: `docker compose up java -d`
 - compile java: `docker compose exec java javac CheckWebhookSignature.java`
 - run the check webhook signature: `docker compose exec java java CheckWebhookSignature /data/raw_webhook_body.txt /data/signature.txt /data/public.key`
+
+### php
+- start the container: `docker compose up php -d`
+- run the check webhook signature: `docker-compose exec php php /app/index.php /data/raw_webhook_body.txt /data/signature.txt /data/public.key`
